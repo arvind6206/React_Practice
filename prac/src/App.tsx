@@ -28,7 +28,7 @@ const App = () => {
   }
 
   function handleRemove() {
-    setProduct(null);
+    setProduct(null!);
   }
 
   if (!product) {
