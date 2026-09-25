@@ -4,7 +4,7 @@ const App = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  function handlePasswordChange(e) {
+  function handlePasswordChange(e: any) {
     setPassword(e.target.value);
   }
 
