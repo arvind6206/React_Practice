@@ -1,8 +1,28 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    async function submitHandler(e){
+      e.preventDefault()
+      try {
+        const res = axios.post('http://localhost:3000/api/v1/auth/login', {
+          email,
+          password
+        })
+        console.log(res.data)
+        navigate('/dashboard')
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
@@ -19,7 +39,8 @@ const Login = () => {
         </div>
 
         {/* Form */}
-        <form className="space-y-5">
+        <form onSubmit={submitHandler}
+        className="space-y-5">
 
           {/* Email */}
           <div>
@@ -33,6 +54,8 @@ const Login = () => {
             <input
               id="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
             />
@@ -50,6 +73,8 @@ const Login = () => {
             <input
               id="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
             />
