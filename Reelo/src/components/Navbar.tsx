@@ -1,7 +1,8 @@
 import { Film, Search, User } from "lucide-react";
 import React from "react";
 
-const Navbar = () => {
+
+const Navbar = ({setSearch}: any) => {
   return (
     <div className="bg-slate-200 h-13 flex items-center justify-between pl-5 pr-5">
       <div className='flex gap-2 items-center'>
@@ -18,6 +19,7 @@ const Navbar = () => {
             className='border rounded-md pl-10 pr-4 py-2'
             type='search'
             placeholder='Search movies'
+            onChange={(e) => setSearch(e.target.value)}
             />
             <Search className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-500'/>
 
